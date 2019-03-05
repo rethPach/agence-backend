@@ -49839,7 +49839,7 @@ module.exports = {
 
 function IronHide($q, $http, IronHideResponse) {
 	var debug = false,
-	    url = "/agence-backend/public/api/";
+	    url = "/api/";
 
 	this.get = function (urlParam, config, data) {
 		var promise = debug ? $q.resolve({ data: data }) : $http.get(url.concat(urlParam), config);
