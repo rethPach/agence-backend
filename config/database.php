@@ -54,10 +54,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
+            'host'      => env('DB_HOST', 'db4free.net'),
+            'database'  => env('DB_DATABASE', 'nz_agence_db'),
+            'username'  => env('DB_USERNAME', 'nz_agence_user'),
+            'password'  => env('DB_PASSWORD', 'nazareth1290'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
