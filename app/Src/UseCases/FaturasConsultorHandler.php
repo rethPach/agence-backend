@@ -4,7 +4,7 @@ namespace App\Src\UseCases;
 
 use App\Src\UseCases\Commands\FaturasConsultorCommand;
 use App\Src\Repositories\FaturaRepo;
-use App\Src\Services\FaturasConsultorEmpresa;
+use App\Src\Services\GrupoFaturas;
 
 class FaturasConsultorHandler
 {
@@ -21,40 +21,23 @@ class FaturasConsultorHandler
 			return $fatura->calculate();
 		});
 
-		return $this->faturasConsultorEmpresa($faturas);
+		return $this->groupFacturas($faturas);
 	}
 
 	public function groupFacturas($faturas)
 	{
-		return $faturas->reduce(function($group, $fatura) {
-
-			$cliente = $fatura['cliente_no_razao'];
-
-			if(!array_key_exists($cliente, $group)) $group[$cliente] = [];
-
-			array_push($group[$cliente], $fatura);
-
+		$grupoFacturas = $faturas->reduce(function($group, $fatura) {
+			$group->add($fatura);
 			return $group;
+		}, new GrupoFaturas());
 
-		}, []);
-	}
-
-	public function faturasConsultorEmpresa($faturas)
-	{
-		$groupFacturas = collect($this->groupFacturas($faturas));		
-
-		return $groupFacturas->map(function($group, $key) {
-			$faturaConsultorEmpresa = new FaturasConsultorEmpresa($key, $group);
-			return $faturaConsultorEmpresa->toArray();
-		})
-
-		->values();
+		return $grupoFacturas->getResult();
 	}
 
 	protected function faturas($command)
 	{
-		return $this->faturaRepo->getAllByConsultantAndTimeFrameSingle(
-			$command->co_usuario(), 
+		return $this->faturaRepo->byFacturasConsultorHandler(
+			$command->co_usuarios(), 
 			$command->time_frame()
 		);
 	}

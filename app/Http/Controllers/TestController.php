@@ -25,7 +25,7 @@ class TestController extends Controller
 
     public function test()
     {
-        return $this->getCustomResponse(1000, "Todo Cool", $this->testFaturasConsultorHandler());
+        return $this->getCustomResponse(1000, "Todo Cool", $this->testDesempenoConsultores());
     }
 
     protected function testListadoConsultores()
@@ -41,9 +41,9 @@ class TestController extends Controller
 
     protected function testFaturasConsultorHandler()
     {
-        $usuario = "carlos.carvalho";
-        $intervaloData = new IntervaloData("2007-01-25", "2007-03-14");
-        $command = new FaturasConsultorCommand($usuario, $intervaloData);
+      $usuarios = ["carlos.carvalho", "carlos.arruda"];
+      $intervaloData = new IntervaloData("2007-01-25", "2007-03-14");
+      $command = new FaturasConsultorCommand($usuarios, $intervaloData);
 
         return $this->faturasConsultorHandler->handle($command);
     }

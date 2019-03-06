@@ -32,7 +32,7 @@ class DesempenoConsultores
 
 	protected function faturas($command)
 	{
-		return $this->faturaRepo->getAllByConsultantAndTimeFrameMulti(
+		return $this->faturaRepo->byDesempenoConsultores(
 			$command->co_usuarios(), 
 			$command->time_frame()
 		);

@@ -3,7 +3,6 @@
 namespace App\Src\Models\Fatura;
 
 use App\Src\Models\Consultor;
-use App\Src\Models\ServicioConsultor;
 
 class Fatura
 {

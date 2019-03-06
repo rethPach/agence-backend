@@ -7,10 +7,10 @@ use App\Src\Models\Fatura\Fatura;
 
 class FaturaRepo
 {
-	public function getAllByConsultantAndTimeFrameSingle($co_usuario, $timeFrame)
+	public function byFacturasConsultorHandler($co_usuarios, $timeFrame)
 	{
-		$invoicesQueryBuilder = FaturaEntity::whereHas('servicioConsultor', function($query) use($co_usuario){
-  		$query->where('co_usuario', $co_usuario);
+		$invoicesQueryBuilder = FaturaEntity::whereHas('servicioConsultor', function($query) use($co_usuarios){
+  		$query->whereIn('co_usuario', $co_usuarios);
   	});
 
   	$invoicesQueryBuilder->whereBetween('data_emissao', [$timeFrame->from(), $timeFrame->to()]);
@@ -22,7 +22,7 @@ class FaturaRepo
     });
 	}
 
-	public function getAllByConsultantAndTimeFrameMulti($co_usuarios, $timeFrame)
+	public function byDesempenoConsultores($co_usuarios, $timeFrame)
 	{
 		$invoicesQueryBuilder = FaturaEntity::whereHas('servicioConsultor', function($query) use($co_usuarios){
   		$query->whereIn('co_usuario', $co_usuarios);

@@ -38,9 +38,9 @@ class ApiAgenceController extends Controller
 
     public function faturasConsultor(Request $request)
     {
-        $usuario = $request->get('co_usuario');
+        $usuarios = json_decode($request->get('co_usuarios'));
         $intervaloData = new IntervaloData($request->get('from'), $request->get('to'));
-        $command = new FaturasConsultorCommand($usuario, $intervaloData);
+        $command = new FaturasConsultorCommand($usuarios, $intervaloData);
         $response = $this->faturasConsultorHandler->handle($command);
 
         return $this->getCustomResponse(1000, "Todo Cool",  $response);

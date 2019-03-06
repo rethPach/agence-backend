@@ -4,16 +4,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="dist/vendors/vendor.css">
+    <style>
+      .sidebar-nav .glyphicon {
+        float: right;
+        margin-top: 14px;
+        margin-right: 60px
+      }
+    </style>
   </head>
   <body ng-app="agence-app">
      <div id="wrapper">
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="sidebar-brand gris">
-                <a href="#"><img src="dist/images/logo.gif" style="margin-left: 2em"></a>
+                <a href="#"><img src="dist/images/logo.gif"></a>
             </li>
-            <li><a href="#!/ganancias-netas">Ganancias Netas</a></li>
-            <li><a href="#!/agence-home">Desempeno</a></li>
+            <li>
+              <a href="#!/ganancias-netas" style="text-align: center;">
+                <span>Ganancias Netas</span>
+                <span class="glyphicon glyphicon-piggy-bank"></span>
+              </a>
+            </li>
+            <li>
+              <a href="#!/agence-home" style="text-align: center;">
+                <span>Desempeno</span>
+                <span class="glyphicon glyphicon-stats"></span>
+              </a>
+            </li>
           </ul>
         </div>
         <div id="page-content-wrapper">
